@@ -1,0 +1,1332 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    CLAVE_PRIMA
+    CLAVE_REFERENTE
+    COMO_MUCHO
+    CREA_LA_TABLA
+    DIVISION
+    EN_ESTO
+    ES_NULO
+    EXISTE
+    O
+    ORDENA_POR
+    PARECIDO_A
+    POR_DEFECTO
+    RESTA
+    SUMA
+    TIRA_LA_TABLA
+    TRANSFORMA_A
+    UNICO
+
+Grammar
+
+Rule 0     S' -> statement
+Rule 1     statement -> select_statement
+Rule 2     statement -> insert_statement
+Rule 3     statement -> update_statement
+Rule 4     statement -> delete_statement
+Rule 5     statement -> alter_statement
+Rule 6     select_statement -> TRAEME columns DE_LA_TABLA NOMBRE join_clause condition_opt PUNTO_COMA
+Rule 7     select_statement -> TRAEME columns DE_LA_TABLA NOMBRE join_clause condition_opt group_clause PUNTO_COMA
+Rule 8     join_clause -> MEZCLANDO NOMBRE EN join_condition
+Rule 9     join_clause -> empty
+Rule 10    group_clause -> AGRUPANDO_POR NOMBRE
+Rule 11    group_clause -> AGRUPANDO_POR NOMBRE WHERE_DEL_GROUP_BY condition_count
+Rule 12    group_clause -> empty
+Rule 13    condition_count -> COUNT PARENIZQ TODO PARENDER comparison value
+Rule 14    condition_count -> empty
+Rule 15    join_condition -> NOMBRE IGUAL NOMBRE
+Rule 16    join_condition -> NOMBRE PUNTO NOMBRE IGUAL NOMBRE PUNTO NOMBRE
+Rule 17    join_condition -> NOMBRE comparison value
+Rule 18    condition_opt -> condition_s
+Rule 19    condition_opt -> empty
+Rule 20    empty -> <empty>
+Rule 21    columns -> TODO
+Rule 22    columns -> columns_list
+Rule 23    columns -> counting
+Rule 24    counting -> CONTANDO PARENIZQ TODO PARENDER
+Rule 25    columns_list -> NOMBRE
+Rule 26    columns_list -> columns_list COMA NOMBRE
+Rule 27    columns -> LOS_DISTINTOS NOMBRE
+Rule 28    condition_s -> DONDE NOMBRE comparison value
+Rule 29    condition_s -> DONDE NOMBRE PUNTO NOMBRE comparison value
+Rule 30    value -> NUMERO
+Rule 31    value -> STRING
+Rule 32    comparison -> MAYOR_QUE
+Rule 33    comparison -> MENOR_QUE
+Rule 34    comparison -> IGUAL
+Rule 35    comparison -> MAYOR_IGUAL
+Rule 36    comparison -> MENOR_IGUAL
+Rule 37    insert_statement -> METE_EN NOMBRE PARENIZQ columns_list PARENDER LOS_VALORES PARENIZQ values_list PARENDER PUNTO_COMA
+Rule 38    values_list -> value
+Rule 39    values_list -> values_list COMA value
+Rule 40    update_statement -> ACTUALIZA NOMBRE SETEA assignments DONDE condition_where PUNTO_COMA
+Rule 41    assignments -> NOMBRE IGUAL value
+Rule 42    assignments -> assignments COMA NOMBRE IGUAL value
+Rule 43    condition_where -> NOMBRE comparison value
+Rule 44    condition_where -> NOMBRE PUNTO NOMBRE comparison value
+Rule 45    condition_where -> NOMBRE ENTRE value Y value
+Rule 46    delete_statement -> BORRA_DE_LA_TABLA NOMBRE DONDE condition_where PUNTO_COMA
+Rule 47    alter_statement -> CAMBIA_LA_TABLA NOMBRE alter_actions PUNTO_COMA
+Rule 48    alter_actions -> AGREGA_LA_COLUMNA NOMBRE VARCHAR PARENIZQ NUMERO PARENDER NO_NULO
+Rule 49    alter_actions -> ELIMINA_LA_COLUMNA NOMBRE
+
+Terminals, with rules where they appear
+
+ACTUALIZA            : 40
+AGREGA_LA_COLUMNA    : 48
+AGRUPANDO_POR        : 10 11
+BORRA_DE_LA_TABLA    : 46
+CAMBIA_LA_TABLA      : 47
+CLAVE_PRIMA          : 
+CLAVE_REFERENTE      : 
+COMA                 : 26 39 42
+COMO_MUCHO           : 
+CONTANDO             : 24
+COUNT                : 13
+CREA_LA_TABLA        : 
+DE_LA_TABLA          : 6 7
+DIVISION             : 
+DONDE                : 28 29 40 46
+ELIMINA_LA_COLUMNA   : 49
+EN                   : 8
+ENTRE                : 45
+EN_ESTO              : 
+ES_NULO              : 
+EXISTE               : 
+IGUAL                : 15 16 34 41 42
+LOS_DISTINTOS        : 27
+LOS_VALORES          : 37
+MAYOR_IGUAL          : 35
+MAYOR_QUE            : 32
+MENOR_IGUAL          : 36
+MENOR_QUE            : 33
+METE_EN              : 37
+MEZCLANDO            : 8
+NOMBRE               : 6 7 8 10 11 15 15 16 16 16 16 17 25 26 27 28 29 29 37 40 41 42 43 44 44 45 46 47 48 49
+NO_NULO              : 48
+NUMERO               : 30 48
+O                    : 
+ORDENA_POR           : 
+PARECIDO_A           : 
+PARENDER             : 13 24 37 37 48
+PARENIZQ             : 13 24 37 37 48
+POR_DEFECTO          : 
+PUNTO                : 16 16 29 44
+PUNTO_COMA           : 6 7 37 40 46 47
+RESTA                : 
+SETEA                : 40
+STRING               : 31
+SUMA                 : 
+TIRA_LA_TABLA        : 
+TODO                 : 13 21 24
+TRAEME               : 6 7
+TRANSFORMA_A         : 
+UNICO                : 
+VARCHAR              : 48
+WHERE_DEL_GROUP_BY   : 11
+Y                    : 45
+error                : 
+
+Nonterminals, with rules where they appear
+
+alter_actions        : 47
+alter_statement      : 5
+assignments          : 40 42
+columns              : 6 7
+columns_list         : 22 26 37
+comparison           : 13 17 28 29 43 44
+condition_count      : 11
+condition_opt        : 6 7
+condition_s          : 18
+condition_where      : 40 46
+counting             : 23
+delete_statement     : 4
+empty                : 9 12 14 19
+group_clause         : 7
+insert_statement     : 2
+join_clause          : 6 7
+join_condition       : 8
+select_statement     : 1
+statement            : 0
+update_statement     : 3
+value                : 13 17 28 29 38 39 41 42 43 44 45 45
+values_list          : 37 39
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . statement
+    (1) statement -> . select_statement
+    (2) statement -> . insert_statement
+    (3) statement -> . update_statement
+    (4) statement -> . delete_statement
+    (5) statement -> . alter_statement
+    (6) select_statement -> . TRAEME columns DE_LA_TABLA NOMBRE join_clause condition_opt PUNTO_COMA
+    (7) select_statement -> . TRAEME columns DE_LA_TABLA NOMBRE join_clause condition_opt group_clause PUNTO_COMA
+    (37) insert_statement -> . METE_EN NOMBRE PARENIZQ columns_list PARENDER LOS_VALORES PARENIZQ values_list PARENDER PUNTO_COMA
+    (40) update_statement -> . ACTUALIZA NOMBRE SETEA assignments DONDE condition_where PUNTO_COMA
+    (46) delete_statement -> . BORRA_DE_LA_TABLA NOMBRE DONDE condition_where PUNTO_COMA
+    (47) alter_statement -> . CAMBIA_LA_TABLA NOMBRE alter_actions PUNTO_COMA
+
+    TRAEME          shift and go to state 7
+    METE_EN         shift and go to state 8
+    ACTUALIZA       shift and go to state 9
+    BORRA_DE_LA_TABLA shift and go to state 10
+    CAMBIA_LA_TABLA shift and go to state 11
+
+    statement                      shift and go to state 1
+    select_statement               shift and go to state 2
+    insert_statement               shift and go to state 3
+    update_statement               shift and go to state 4
+    delete_statement               shift and go to state 5
+    alter_statement                shift and go to state 6
+
+state 1
+
+    (0) S' -> statement .
+
+
+
+state 2
+
+    (1) statement -> select_statement .
+
+    $end            reduce using rule 1 (statement -> select_statement .)
+
+
+state 3
+
+    (2) statement -> insert_statement .
+
+    $end            reduce using rule 2 (statement -> insert_statement .)
+
+
+state 4
+
+    (3) statement -> update_statement .
+
+    $end            reduce using rule 3 (statement -> update_statement .)
+
+
+state 5
+
+    (4) statement -> delete_statement .
+
+    $end            reduce using rule 4 (statement -> delete_statement .)
+
+
+state 6
+
+    (5) statement -> alter_statement .
+
+    $end            reduce using rule 5 (statement -> alter_statement .)
+
+
+state 7
+
+    (6) select_statement -> TRAEME . columns DE_LA_TABLA NOMBRE join_clause condition_opt PUNTO_COMA
+    (7) select_statement -> TRAEME . columns DE_LA_TABLA NOMBRE join_clause condition_opt group_clause PUNTO_COMA
+    (21) columns -> . TODO
+    (22) columns -> . columns_list
+    (23) columns -> . counting
+    (27) columns -> . LOS_DISTINTOS NOMBRE
+    (25) columns_list -> . NOMBRE
+    (26) columns_list -> . columns_list COMA NOMBRE
+    (24) counting -> . CONTANDO PARENIZQ TODO PARENDER
+
+    TODO            shift and go to state 14
+    LOS_DISTINTOS   shift and go to state 17
+    NOMBRE          shift and go to state 13
+    CONTANDO        shift and go to state 18
+
+    columns                        shift and go to state 12
+    columns_list                   shift and go to state 15
+    counting                       shift and go to state 16
+
+state 8
+
+    (37) insert_statement -> METE_EN . NOMBRE PARENIZQ columns_list PARENDER LOS_VALORES PARENIZQ values_list PARENDER PUNTO_COMA
+
+    NOMBRE          shift and go to state 19
+
+
+state 9
+
+    (40) update_statement -> ACTUALIZA . NOMBRE SETEA assignments DONDE condition_where PUNTO_COMA
+
+    NOMBRE          shift and go to state 20
+
+
+state 10
+
+    (46) delete_statement -> BORRA_DE_LA_TABLA . NOMBRE DONDE condition_where PUNTO_COMA
+
+    NOMBRE          shift and go to state 21
+
+
+state 11
+
+    (47) alter_statement -> CAMBIA_LA_TABLA . NOMBRE alter_actions PUNTO_COMA
+
+    NOMBRE          shift and go to state 22
+
+
+state 12
+
+    (6) select_statement -> TRAEME columns . DE_LA_TABLA NOMBRE join_clause condition_opt PUNTO_COMA
+    (7) select_statement -> TRAEME columns . DE_LA_TABLA NOMBRE join_clause condition_opt group_clause PUNTO_COMA
+
+    DE_LA_TABLA     shift and go to state 23
+
+
+state 13
+
+    (25) columns_list -> NOMBRE .
+
+    COMA            reduce using rule 25 (columns_list -> NOMBRE .)
+    DE_LA_TABLA     reduce using rule 25 (columns_list -> NOMBRE .)
+    PARENDER        reduce using rule 25 (columns_list -> NOMBRE .)
+
+
+state 14
+
+    (21) columns -> TODO .
+
+    DE_LA_TABLA     reduce using rule 21 (columns -> TODO .)
+
+
+state 15
+
+    (22) columns -> columns_list .
+    (26) columns_list -> columns_list . COMA NOMBRE
+
+    DE_LA_TABLA     reduce using rule 22 (columns -> columns_list .)
+    COMA            shift and go to state 24
+
+
+state 16
+
+    (23) columns -> counting .
+
+    DE_LA_TABLA     reduce using rule 23 (columns -> counting .)
+
+
+state 17
+
+    (27) columns -> LOS_DISTINTOS . NOMBRE
+
+    NOMBRE          shift and go to state 25
+
+
+state 18
+
+    (24) counting -> CONTANDO . PARENIZQ TODO PARENDER
+
+    PARENIZQ        shift and go to state 26
+
+
+state 19
+
+    (37) insert_statement -> METE_EN NOMBRE . PARENIZQ columns_list PARENDER LOS_VALORES PARENIZQ values_list PARENDER PUNTO_COMA
+
+    PARENIZQ        shift and go to state 27
+
+
+state 20
+
+    (40) update_statement -> ACTUALIZA NOMBRE . SETEA assignments DONDE condition_where PUNTO_COMA
+
+    SETEA           shift and go to state 28
+
+
+state 21
+
+    (46) delete_statement -> BORRA_DE_LA_TABLA NOMBRE . DONDE condition_where PUNTO_COMA
+
+    DONDE           shift and go to state 29
+
+
+state 22
+
+    (47) alter_statement -> CAMBIA_LA_TABLA NOMBRE . alter_actions PUNTO_COMA
+    (48) alter_actions -> . AGREGA_LA_COLUMNA NOMBRE VARCHAR PARENIZQ NUMERO PARENDER NO_NULO
+    (49) alter_actions -> . ELIMINA_LA_COLUMNA NOMBRE
+
+    AGREGA_LA_COLUMNA shift and go to state 31
+    ELIMINA_LA_COLUMNA shift and go to state 32
+
+    alter_actions                  shift and go to state 30
+
+state 23
+
+    (6) select_statement -> TRAEME columns DE_LA_TABLA . NOMBRE join_clause condition_opt PUNTO_COMA
+    (7) select_statement -> TRAEME columns DE_LA_TABLA . NOMBRE join_clause condition_opt group_clause PUNTO_COMA
+
+    NOMBRE          shift and go to state 33
+
+
+state 24
+
+    (26) columns_list -> columns_list COMA . NOMBRE
+
+    NOMBRE          shift and go to state 34
+
+
+state 25
+
+    (27) columns -> LOS_DISTINTOS NOMBRE .
+
+    DE_LA_TABLA     reduce using rule 27 (columns -> LOS_DISTINTOS NOMBRE .)
+
+
+state 26
+
+    (24) counting -> CONTANDO PARENIZQ . TODO PARENDER
+
+    TODO            shift and go to state 35
+
+
+state 27
+
+    (37) insert_statement -> METE_EN NOMBRE PARENIZQ . columns_list PARENDER LOS_VALORES PARENIZQ values_list PARENDER PUNTO_COMA
+    (25) columns_list -> . NOMBRE
+    (26) columns_list -> . columns_list COMA NOMBRE
+
+    NOMBRE          shift and go to state 13
+
+    columns_list                   shift and go to state 36
+
+state 28
+
+    (40) update_statement -> ACTUALIZA NOMBRE SETEA . assignments DONDE condition_where PUNTO_COMA
+    (41) assignments -> . NOMBRE IGUAL value
+    (42) assignments -> . assignments COMA NOMBRE IGUAL value
+
+    NOMBRE          shift and go to state 37
+
+    assignments                    shift and go to state 38
+
+state 29
+
+    (46) delete_statement -> BORRA_DE_LA_TABLA NOMBRE DONDE . condition_where PUNTO_COMA
+    (43) condition_where -> . NOMBRE comparison value
+    (44) condition_where -> . NOMBRE PUNTO NOMBRE comparison value
+    (45) condition_where -> . NOMBRE ENTRE value Y value
+
+    NOMBRE          shift and go to state 39
+
+    condition_where                shift and go to state 40
+
+state 30
+
+    (47) alter_statement -> CAMBIA_LA_TABLA NOMBRE alter_actions . PUNTO_COMA
+
+    PUNTO_COMA      shift and go to state 41
+
+
+state 31
+
+    (48) alter_actions -> AGREGA_LA_COLUMNA . NOMBRE VARCHAR PARENIZQ NUMERO PARENDER NO_NULO
+
+    NOMBRE          shift and go to state 42
+
+
+state 32
+
+    (49) alter_actions -> ELIMINA_LA_COLUMNA . NOMBRE
+
+    NOMBRE          shift and go to state 43
+
+
+state 33
+
+    (6) select_statement -> TRAEME columns DE_LA_TABLA NOMBRE . join_clause condition_opt PUNTO_COMA
+    (7) select_statement -> TRAEME columns DE_LA_TABLA NOMBRE . join_clause condition_opt group_clause PUNTO_COMA
+    (8) join_clause -> . MEZCLANDO NOMBRE EN join_condition
+    (9) join_clause -> . empty
+    (20) empty -> .
+
+    MEZCLANDO       shift and go to state 45
+    DONDE           reduce using rule 20 (empty -> .)
+    PUNTO_COMA      reduce using rule 20 (empty -> .)
+    AGRUPANDO_POR   reduce using rule 20 (empty -> .)
+
+    join_clause                    shift and go to state 44
+    empty                          shift and go to state 46
+
+state 34
+
+    (26) columns_list -> columns_list COMA NOMBRE .
+
+    COMA            reduce using rule 26 (columns_list -> columns_list COMA NOMBRE .)
+    DE_LA_TABLA     reduce using rule 26 (columns_list -> columns_list COMA NOMBRE .)
+    PARENDER        reduce using rule 26 (columns_list -> columns_list COMA NOMBRE .)
+
+
+state 35
+
+    (24) counting -> CONTANDO PARENIZQ TODO . PARENDER
+
+    PARENDER        shift and go to state 47
+
+
+state 36
+
+    (37) insert_statement -> METE_EN NOMBRE PARENIZQ columns_list . PARENDER LOS_VALORES PARENIZQ values_list PARENDER PUNTO_COMA
+    (26) columns_list -> columns_list . COMA NOMBRE
+
+    PARENDER        shift and go to state 48
+    COMA            shift and go to state 24
+
+
+state 37
+
+    (41) assignments -> NOMBRE . IGUAL value
+
+    IGUAL           shift and go to state 49
+
+
+state 38
+
+    (40) update_statement -> ACTUALIZA NOMBRE SETEA assignments . DONDE condition_where PUNTO_COMA
+    (42) assignments -> assignments . COMA NOMBRE IGUAL value
+
+    DONDE           shift and go to state 50
+    COMA            shift and go to state 51
+
+
+state 39
+
+    (43) condition_where -> NOMBRE . comparison value
+    (44) condition_where -> NOMBRE . PUNTO NOMBRE comparison value
+    (45) condition_where -> NOMBRE . ENTRE value Y value
+    (32) comparison -> . MAYOR_QUE
+    (33) comparison -> . MENOR_QUE
+    (34) comparison -> . IGUAL
+    (35) comparison -> . MAYOR_IGUAL
+    (36) comparison -> . MENOR_IGUAL
+
+    PUNTO           shift and go to state 53
+    ENTRE           shift and go to state 54
+    MAYOR_QUE       shift and go to state 55
+    MENOR_QUE       shift and go to state 56
+    IGUAL           shift and go to state 57
+    MAYOR_IGUAL     shift and go to state 58
+    MENOR_IGUAL     shift and go to state 59
+
+    comparison                     shift and go to state 52
+
+state 40
+
+    (46) delete_statement -> BORRA_DE_LA_TABLA NOMBRE DONDE condition_where . PUNTO_COMA
+
+    PUNTO_COMA      shift and go to state 60
+
+
+state 41
+
+    (47) alter_statement -> CAMBIA_LA_TABLA NOMBRE alter_actions PUNTO_COMA .
+
+    $end            reduce using rule 47 (alter_statement -> CAMBIA_LA_TABLA NOMBRE alter_actions PUNTO_COMA .)
+
+
+state 42
+
+    (48) alter_actions -> AGREGA_LA_COLUMNA NOMBRE . VARCHAR PARENIZQ NUMERO PARENDER NO_NULO
+
+    VARCHAR         shift and go to state 61
+
+
+state 43
+
+    (49) alter_actions -> ELIMINA_LA_COLUMNA NOMBRE .
+
+    PUNTO_COMA      reduce using rule 49 (alter_actions -> ELIMINA_LA_COLUMNA NOMBRE .)
+
+
+state 44
+
+    (6) select_statement -> TRAEME columns DE_LA_TABLA NOMBRE join_clause . condition_opt PUNTO_COMA
+    (7) select_statement -> TRAEME columns DE_LA_TABLA NOMBRE join_clause . condition_opt group_clause PUNTO_COMA
+    (18) condition_opt -> . condition_s
+    (19) condition_opt -> . empty
+    (28) condition_s -> . DONDE NOMBRE comparison value
+    (29) condition_s -> . DONDE NOMBRE PUNTO NOMBRE comparison value
+    (20) empty -> .
+
+    DONDE           shift and go to state 65
+    PUNTO_COMA      reduce using rule 20 (empty -> .)
+    AGRUPANDO_POR   reduce using rule 20 (empty -> .)
+
+    condition_opt                  shift and go to state 62
+    condition_s                    shift and go to state 63
+    empty                          shift and go to state 64
+
+state 45
+
+    (8) join_clause -> MEZCLANDO . NOMBRE EN join_condition
+
+    NOMBRE          shift and go to state 66
+
+
+state 46
+
+    (9) join_clause -> empty .
+
+    DONDE           reduce using rule 9 (join_clause -> empty .)
+    PUNTO_COMA      reduce using rule 9 (join_clause -> empty .)
+    AGRUPANDO_POR   reduce using rule 9 (join_clause -> empty .)
+
+
+state 47
+
+    (24) counting -> CONTANDO PARENIZQ TODO PARENDER .
+
+    DE_LA_TABLA     reduce using rule 24 (counting -> CONTANDO PARENIZQ TODO PARENDER .)
+
+
+state 48
+
+    (37) insert_statement -> METE_EN NOMBRE PARENIZQ columns_list PARENDER . LOS_VALORES PARENIZQ values_list PARENDER PUNTO_COMA
+
+    LOS_VALORES     shift and go to state 67
+
+
+state 49
+
+    (41) assignments -> NOMBRE IGUAL . value
+    (30) value -> . NUMERO
+    (31) value -> . STRING
+
+    NUMERO          shift and go to state 69
+    STRING          shift and go to state 70
+
+    value                          shift and go to state 68
+
+state 50
+
+    (40) update_statement -> ACTUALIZA NOMBRE SETEA assignments DONDE . condition_where PUNTO_COMA
+    (43) condition_where -> . NOMBRE comparison value
+    (44) condition_where -> . NOMBRE PUNTO NOMBRE comparison value
+    (45) condition_where -> . NOMBRE ENTRE value Y value
+
+    NOMBRE          shift and go to state 39
+
+    condition_where                shift and go to state 71
+
+state 51
+
+    (42) assignments -> assignments COMA . NOMBRE IGUAL value
+
+    NOMBRE          shift and go to state 72
+
+
+state 52
+
+    (43) condition_where -> NOMBRE comparison . value
+    (30) value -> . NUMERO
+    (31) value -> . STRING
+
+    NUMERO          shift and go to state 69
+    STRING          shift and go to state 70
+
+    value                          shift and go to state 73
+
+state 53
+
+    (44) condition_where -> NOMBRE PUNTO . NOMBRE comparison value
+
+    NOMBRE          shift and go to state 74
+
+
+state 54
+
+    (45) condition_where -> NOMBRE ENTRE . value Y value
+    (30) value -> . NUMERO
+    (31) value -> . STRING
+
+    NUMERO          shift and go to state 69
+    STRING          shift and go to state 70
+
+    value                          shift and go to state 75
+
+state 55
+
+    (32) comparison -> MAYOR_QUE .
+
+    NUMERO          reduce using rule 32 (comparison -> MAYOR_QUE .)
+    STRING          reduce using rule 32 (comparison -> MAYOR_QUE .)
+
+
+state 56
+
+    (33) comparison -> MENOR_QUE .
+
+    NUMERO          reduce using rule 33 (comparison -> MENOR_QUE .)
+    STRING          reduce using rule 33 (comparison -> MENOR_QUE .)
+
+
+state 57
+
+    (34) comparison -> IGUAL .
+
+    NUMERO          reduce using rule 34 (comparison -> IGUAL .)
+    STRING          reduce using rule 34 (comparison -> IGUAL .)
+
+
+state 58
+
+    (35) comparison -> MAYOR_IGUAL .
+
+    NUMERO          reduce using rule 35 (comparison -> MAYOR_IGUAL .)
+    STRING          reduce using rule 35 (comparison -> MAYOR_IGUAL .)
+
+
+state 59
+
+    (36) comparison -> MENOR_IGUAL .
+
+    NUMERO          reduce using rule 36 (comparison -> MENOR_IGUAL .)
+    STRING          reduce using rule 36 (comparison -> MENOR_IGUAL .)
+
+
+state 60
+
+    (46) delete_statement -> BORRA_DE_LA_TABLA NOMBRE DONDE condition_where PUNTO_COMA .
+
+    $end            reduce using rule 46 (delete_statement -> BORRA_DE_LA_TABLA NOMBRE DONDE condition_where PUNTO_COMA .)
+
+
+state 61
+
+    (48) alter_actions -> AGREGA_LA_COLUMNA NOMBRE VARCHAR . PARENIZQ NUMERO PARENDER NO_NULO
+
+    PARENIZQ        shift and go to state 76
+
+
+state 62
+
+    (6) select_statement -> TRAEME columns DE_LA_TABLA NOMBRE join_clause condition_opt . PUNTO_COMA
+    (7) select_statement -> TRAEME columns DE_LA_TABLA NOMBRE join_clause condition_opt . group_clause PUNTO_COMA
+    (10) group_clause -> . AGRUPANDO_POR NOMBRE
+    (11) group_clause -> . AGRUPANDO_POR NOMBRE WHERE_DEL_GROUP_BY condition_count
+    (12) group_clause -> . empty
+    (20) empty -> .
+
+  ! shift/reduce conflict for PUNTO_COMA resolved as shift
+    PUNTO_COMA      shift and go to state 77
+    AGRUPANDO_POR   shift and go to state 79
+
+  ! PUNTO_COMA      [ reduce using rule 20 (empty -> .) ]
+
+    group_clause                   shift and go to state 78
+    empty                          shift and go to state 80
+
+state 63
+
+    (18) condition_opt -> condition_s .
+
+    PUNTO_COMA      reduce using rule 18 (condition_opt -> condition_s .)
+    AGRUPANDO_POR   reduce using rule 18 (condition_opt -> condition_s .)
+
+
+state 64
+
+    (19) condition_opt -> empty .
+
+    PUNTO_COMA      reduce using rule 19 (condition_opt -> empty .)
+    AGRUPANDO_POR   reduce using rule 19 (condition_opt -> empty .)
+
+
+state 65
+
+    (28) condition_s -> DONDE . NOMBRE comparison value
+    (29) condition_s -> DONDE . NOMBRE PUNTO NOMBRE comparison value
+
+    NOMBRE          shift and go to state 81
+
+
+state 66
+
+    (8) join_clause -> MEZCLANDO NOMBRE . EN join_condition
+
+    EN              shift and go to state 82
+
+
+state 67
+
+    (37) insert_statement -> METE_EN NOMBRE PARENIZQ columns_list PARENDER LOS_VALORES . PARENIZQ values_list PARENDER PUNTO_COMA
+
+    PARENIZQ        shift and go to state 83
+
+
+state 68
+
+    (41) assignments -> NOMBRE IGUAL value .
+
+    DONDE           reduce using rule 41 (assignments -> NOMBRE IGUAL value .)
+    COMA            reduce using rule 41 (assignments -> NOMBRE IGUAL value .)
+
+
+state 69
+
+    (30) value -> NUMERO .
+
+    DONDE           reduce using rule 30 (value -> NUMERO .)
+    COMA            reduce using rule 30 (value -> NUMERO .)
+    PUNTO_COMA      reduce using rule 30 (value -> NUMERO .)
+    Y               reduce using rule 30 (value -> NUMERO .)
+    PARENDER        reduce using rule 30 (value -> NUMERO .)
+    AGRUPANDO_POR   reduce using rule 30 (value -> NUMERO .)
+
+
+state 70
+
+    (31) value -> STRING .
+
+    DONDE           reduce using rule 31 (value -> STRING .)
+    COMA            reduce using rule 31 (value -> STRING .)
+    PUNTO_COMA      reduce using rule 31 (value -> STRING .)
+    Y               reduce using rule 31 (value -> STRING .)
+    PARENDER        reduce using rule 31 (value -> STRING .)
+    AGRUPANDO_POR   reduce using rule 31 (value -> STRING .)
+
+
+state 71
+
+    (40) update_statement -> ACTUALIZA NOMBRE SETEA assignments DONDE condition_where . PUNTO_COMA
+
+    PUNTO_COMA      shift and go to state 84
+
+
+state 72
+
+    (42) assignments -> assignments COMA NOMBRE . IGUAL value
+
+    IGUAL           shift and go to state 85
+
+
+state 73
+
+    (43) condition_where -> NOMBRE comparison value .
+
+    PUNTO_COMA      reduce using rule 43 (condition_where -> NOMBRE comparison value .)
+
+
+state 74
+
+    (44) condition_where -> NOMBRE PUNTO NOMBRE . comparison value
+    (32) comparison -> . MAYOR_QUE
+    (33) comparison -> . MENOR_QUE
+    (34) comparison -> . IGUAL
+    (35) comparison -> . MAYOR_IGUAL
+    (36) comparison -> . MENOR_IGUAL
+
+    MAYOR_QUE       shift and go to state 55
+    MENOR_QUE       shift and go to state 56
+    IGUAL           shift and go to state 57
+    MAYOR_IGUAL     shift and go to state 58
+    MENOR_IGUAL     shift and go to state 59
+
+    comparison                     shift and go to state 86
+
+state 75
+
+    (45) condition_where -> NOMBRE ENTRE value . Y value
+
+    Y               shift and go to state 87
+
+
+state 76
+
+    (48) alter_actions -> AGREGA_LA_COLUMNA NOMBRE VARCHAR PARENIZQ . NUMERO PARENDER NO_NULO
+
+    NUMERO          shift and go to state 88
+
+
+state 77
+
+    (6) select_statement -> TRAEME columns DE_LA_TABLA NOMBRE join_clause condition_opt PUNTO_COMA .
+
+    $end            reduce using rule 6 (select_statement -> TRAEME columns DE_LA_TABLA NOMBRE join_clause condition_opt PUNTO_COMA .)
+
+
+state 78
+
+    (7) select_statement -> TRAEME columns DE_LA_TABLA NOMBRE join_clause condition_opt group_clause . PUNTO_COMA
+
+    PUNTO_COMA      shift and go to state 89
+
+
+state 79
+
+    (10) group_clause -> AGRUPANDO_POR . NOMBRE
+    (11) group_clause -> AGRUPANDO_POR . NOMBRE WHERE_DEL_GROUP_BY condition_count
+
+    NOMBRE          shift and go to state 90
+
+
+state 80
+
+    (12) group_clause -> empty .
+
+    PUNTO_COMA      reduce using rule 12 (group_clause -> empty .)
+
+
+state 81
+
+    (28) condition_s -> DONDE NOMBRE . comparison value
+    (29) condition_s -> DONDE NOMBRE . PUNTO NOMBRE comparison value
+    (32) comparison -> . MAYOR_QUE
+    (33) comparison -> . MENOR_QUE
+    (34) comparison -> . IGUAL
+    (35) comparison -> . MAYOR_IGUAL
+    (36) comparison -> . MENOR_IGUAL
+
+    PUNTO           shift and go to state 92
+    MAYOR_QUE       shift and go to state 55
+    MENOR_QUE       shift and go to state 56
+    IGUAL           shift and go to state 57
+    MAYOR_IGUAL     shift and go to state 58
+    MENOR_IGUAL     shift and go to state 59
+
+    comparison                     shift and go to state 91
+
+state 82
+
+    (8) join_clause -> MEZCLANDO NOMBRE EN . join_condition
+    (15) join_condition -> . NOMBRE IGUAL NOMBRE
+    (16) join_condition -> . NOMBRE PUNTO NOMBRE IGUAL NOMBRE PUNTO NOMBRE
+    (17) join_condition -> . NOMBRE comparison value
+
+    NOMBRE          shift and go to state 93
+
+    join_condition                 shift and go to state 94
+
+state 83
+
+    (37) insert_statement -> METE_EN NOMBRE PARENIZQ columns_list PARENDER LOS_VALORES PARENIZQ . values_list PARENDER PUNTO_COMA
+    (38) values_list -> . value
+    (39) values_list -> . values_list COMA value
+    (30) value -> . NUMERO
+    (31) value -> . STRING
+
+    NUMERO          shift and go to state 69
+    STRING          shift and go to state 70
+
+    values_list                    shift and go to state 95
+    value                          shift and go to state 96
+
+state 84
+
+    (40) update_statement -> ACTUALIZA NOMBRE SETEA assignments DONDE condition_where PUNTO_COMA .
+
+    $end            reduce using rule 40 (update_statement -> ACTUALIZA NOMBRE SETEA assignments DONDE condition_where PUNTO_COMA .)
+
+
+state 85
+
+    (42) assignments -> assignments COMA NOMBRE IGUAL . value
+    (30) value -> . NUMERO
+    (31) value -> . STRING
+
+    NUMERO          shift and go to state 69
+    STRING          shift and go to state 70
+
+    value                          shift and go to state 97
+
+state 86
+
+    (44) condition_where -> NOMBRE PUNTO NOMBRE comparison . value
+    (30) value -> . NUMERO
+    (31) value -> . STRING
+
+    NUMERO          shift and go to state 69
+    STRING          shift and go to state 70
+
+    value                          shift and go to state 98
+
+state 87
+
+    (45) condition_where -> NOMBRE ENTRE value Y . value
+    (30) value -> . NUMERO
+    (31) value -> . STRING
+
+    NUMERO          shift and go to state 69
+    STRING          shift and go to state 70
+
+    value                          shift and go to state 99
+
+state 88
+
+    (48) alter_actions -> AGREGA_LA_COLUMNA NOMBRE VARCHAR PARENIZQ NUMERO . PARENDER NO_NULO
+
+    PARENDER        shift and go to state 100
+
+
+state 89
+
+    (7) select_statement -> TRAEME columns DE_LA_TABLA NOMBRE join_clause condition_opt group_clause PUNTO_COMA .
+
+    $end            reduce using rule 7 (select_statement -> TRAEME columns DE_LA_TABLA NOMBRE join_clause condition_opt group_clause PUNTO_COMA .)
+
+
+state 90
+
+    (10) group_clause -> AGRUPANDO_POR NOMBRE .
+    (11) group_clause -> AGRUPANDO_POR NOMBRE . WHERE_DEL_GROUP_BY condition_count
+
+    PUNTO_COMA      reduce using rule 10 (group_clause -> AGRUPANDO_POR NOMBRE .)
+    WHERE_DEL_GROUP_BY shift and go to state 101
+
+
+state 91
+
+    (28) condition_s -> DONDE NOMBRE comparison . value
+    (30) value -> . NUMERO
+    (31) value -> . STRING
+
+    NUMERO          shift and go to state 69
+    STRING          shift and go to state 70
+
+    value                          shift and go to state 102
+
+state 92
+
+    (29) condition_s -> DONDE NOMBRE PUNTO . NOMBRE comparison value
+
+    NOMBRE          shift and go to state 103
+
+
+state 93
+
+    (15) join_condition -> NOMBRE . IGUAL NOMBRE
+    (16) join_condition -> NOMBRE . PUNTO NOMBRE IGUAL NOMBRE PUNTO NOMBRE
+    (17) join_condition -> NOMBRE . comparison value
+    (32) comparison -> . MAYOR_QUE
+    (33) comparison -> . MENOR_QUE
+    (34) comparison -> . IGUAL
+    (35) comparison -> . MAYOR_IGUAL
+    (36) comparison -> . MENOR_IGUAL
+
+    IGUAL           shift and go to state 104
+    PUNTO           shift and go to state 105
+    MAYOR_QUE       shift and go to state 55
+    MENOR_QUE       shift and go to state 56
+    MAYOR_IGUAL     shift and go to state 58
+    MENOR_IGUAL     shift and go to state 59
+
+    comparison                     shift and go to state 106
+
+state 94
+
+    (8) join_clause -> MEZCLANDO NOMBRE EN join_condition .
+
+    DONDE           reduce using rule 8 (join_clause -> MEZCLANDO NOMBRE EN join_condition .)
+    PUNTO_COMA      reduce using rule 8 (join_clause -> MEZCLANDO NOMBRE EN join_condition .)
+    AGRUPANDO_POR   reduce using rule 8 (join_clause -> MEZCLANDO NOMBRE EN join_condition .)
+
+
+state 95
+
+    (37) insert_statement -> METE_EN NOMBRE PARENIZQ columns_list PARENDER LOS_VALORES PARENIZQ values_list . PARENDER PUNTO_COMA
+    (39) values_list -> values_list . COMA value
+
+    PARENDER        shift and go to state 107
+    COMA            shift and go to state 108
+
+
+state 96
+
+    (38) values_list -> value .
+
+    PARENDER        reduce using rule 38 (values_list -> value .)
+    COMA            reduce using rule 38 (values_list -> value .)
+
+
+state 97
+
+    (42) assignments -> assignments COMA NOMBRE IGUAL value .
+
+    DONDE           reduce using rule 42 (assignments -> assignments COMA NOMBRE IGUAL value .)
+    COMA            reduce using rule 42 (assignments -> assignments COMA NOMBRE IGUAL value .)
+
+
+state 98
+
+    (44) condition_where -> NOMBRE PUNTO NOMBRE comparison value .
+
+    PUNTO_COMA      reduce using rule 44 (condition_where -> NOMBRE PUNTO NOMBRE comparison value .)
+
+
+state 99
+
+    (45) condition_where -> NOMBRE ENTRE value Y value .
+
+    PUNTO_COMA      reduce using rule 45 (condition_where -> NOMBRE ENTRE value Y value .)
+
+
+state 100
+
+    (48) alter_actions -> AGREGA_LA_COLUMNA NOMBRE VARCHAR PARENIZQ NUMERO PARENDER . NO_NULO
+
+    NO_NULO         shift and go to state 109
+
+
+state 101
+
+    (11) group_clause -> AGRUPANDO_POR NOMBRE WHERE_DEL_GROUP_BY . condition_count
+    (13) condition_count -> . COUNT PARENIZQ TODO PARENDER comparison value
+    (14) condition_count -> . empty
+    (20) empty -> .
+
+    COUNT           shift and go to state 111
+    PUNTO_COMA      reduce using rule 20 (empty -> .)
+
+    condition_count                shift and go to state 110
+    empty                          shift and go to state 112
+
+state 102
+
+    (28) condition_s -> DONDE NOMBRE comparison value .
+
+    PUNTO_COMA      reduce using rule 28 (condition_s -> DONDE NOMBRE comparison value .)
+    AGRUPANDO_POR   reduce using rule 28 (condition_s -> DONDE NOMBRE comparison value .)
+
+
+state 103
+
+    (29) condition_s -> DONDE NOMBRE PUNTO NOMBRE . comparison value
+    (32) comparison -> . MAYOR_QUE
+    (33) comparison -> . MENOR_QUE
+    (34) comparison -> . IGUAL
+    (35) comparison -> . MAYOR_IGUAL
+    (36) comparison -> . MENOR_IGUAL
+
+    MAYOR_QUE       shift and go to state 55
+    MENOR_QUE       shift and go to state 56
+    IGUAL           shift and go to state 57
+    MAYOR_IGUAL     shift and go to state 58
+    MENOR_IGUAL     shift and go to state 59
+
+    comparison                     shift and go to state 113
+
+state 104
+
+    (15) join_condition -> NOMBRE IGUAL . NOMBRE
+    (34) comparison -> IGUAL .
+
+    NOMBRE          shift and go to state 114
+    NUMERO          reduce using rule 34 (comparison -> IGUAL .)
+    STRING          reduce using rule 34 (comparison -> IGUAL .)
+
+
+state 105
+
+    (16) join_condition -> NOMBRE PUNTO . NOMBRE IGUAL NOMBRE PUNTO NOMBRE
+
+    NOMBRE          shift and go to state 115
+
+
+state 106
+
+    (17) join_condition -> NOMBRE comparison . value
+    (30) value -> . NUMERO
+    (31) value -> . STRING
+
+    NUMERO          shift and go to state 69
+    STRING          shift and go to state 70
+
+    value                          shift and go to state 116
+
+state 107
+
+    (37) insert_statement -> METE_EN NOMBRE PARENIZQ columns_list PARENDER LOS_VALORES PARENIZQ values_list PARENDER . PUNTO_COMA
+
+    PUNTO_COMA      shift and go to state 117
+
+
+state 108
+
+    (39) values_list -> values_list COMA . value
+    (30) value -> . NUMERO
+    (31) value -> . STRING
+
+    NUMERO          shift and go to state 69
+    STRING          shift and go to state 70
+
+    value                          shift and go to state 118
+
+state 109
+
+    (48) alter_actions -> AGREGA_LA_COLUMNA NOMBRE VARCHAR PARENIZQ NUMERO PARENDER NO_NULO .
+
+    PUNTO_COMA      reduce using rule 48 (alter_actions -> AGREGA_LA_COLUMNA NOMBRE VARCHAR PARENIZQ NUMERO PARENDER NO_NULO .)
+
+
+state 110
+
+    (11) group_clause -> AGRUPANDO_POR NOMBRE WHERE_DEL_GROUP_BY condition_count .
+
+    PUNTO_COMA      reduce using rule 11 (group_clause -> AGRUPANDO_POR NOMBRE WHERE_DEL_GROUP_BY condition_count .)
+
+
+state 111
+
+    (13) condition_count -> COUNT . PARENIZQ TODO PARENDER comparison value
+
+    PARENIZQ        shift and go to state 119
+
+
+state 112
+
+    (14) condition_count -> empty .
+
+    PUNTO_COMA      reduce using rule 14 (condition_count -> empty .)
+
+
+state 113
+
+    (29) condition_s -> DONDE NOMBRE PUNTO NOMBRE comparison . value
+    (30) value -> . NUMERO
+    (31) value -> . STRING
+
+    NUMERO          shift and go to state 69
+    STRING          shift and go to state 70
+
+    value                          shift and go to state 120
+
+state 114
+
+    (15) join_condition -> NOMBRE IGUAL NOMBRE .
+
+    DONDE           reduce using rule 15 (join_condition -> NOMBRE IGUAL NOMBRE .)
+    PUNTO_COMA      reduce using rule 15 (join_condition -> NOMBRE IGUAL NOMBRE .)
+    AGRUPANDO_POR   reduce using rule 15 (join_condition -> NOMBRE IGUAL NOMBRE .)
+
+
+state 115
+
+    (16) join_condition -> NOMBRE PUNTO NOMBRE . IGUAL NOMBRE PUNTO NOMBRE
+
+    IGUAL           shift and go to state 121
+
+
+state 116
+
+    (17) join_condition -> NOMBRE comparison value .
+
+    DONDE           reduce using rule 17 (join_condition -> NOMBRE comparison value .)
+    PUNTO_COMA      reduce using rule 17 (join_condition -> NOMBRE comparison value .)
+    AGRUPANDO_POR   reduce using rule 17 (join_condition -> NOMBRE comparison value .)
+
+
+state 117
+
+    (37) insert_statement -> METE_EN NOMBRE PARENIZQ columns_list PARENDER LOS_VALORES PARENIZQ values_list PARENDER PUNTO_COMA .
+
+    $end            reduce using rule 37 (insert_statement -> METE_EN NOMBRE PARENIZQ columns_list PARENDER LOS_VALORES PARENIZQ values_list PARENDER PUNTO_COMA .)
+
+
+state 118
+
+    (39) values_list -> values_list COMA value .
+
+    PARENDER        reduce using rule 39 (values_list -> values_list COMA value .)
+    COMA            reduce using rule 39 (values_list -> values_list COMA value .)
+
+
+state 119
+
+    (13) condition_count -> COUNT PARENIZQ . TODO PARENDER comparison value
+
+    TODO            shift and go to state 122
+
+
+state 120
+
+    (29) condition_s -> DONDE NOMBRE PUNTO NOMBRE comparison value .
+
+    PUNTO_COMA      reduce using rule 29 (condition_s -> DONDE NOMBRE PUNTO NOMBRE comparison value .)
+    AGRUPANDO_POR   reduce using rule 29 (condition_s -> DONDE NOMBRE PUNTO NOMBRE comparison value .)
+
+
+state 121
+
+    (16) join_condition -> NOMBRE PUNTO NOMBRE IGUAL . NOMBRE PUNTO NOMBRE
+
+    NOMBRE          shift and go to state 123
+
+
+state 122
+
+    (13) condition_count -> COUNT PARENIZQ TODO . PARENDER comparison value
+
+    PARENDER        shift and go to state 124
+
+
+state 123
+
+    (16) join_condition -> NOMBRE PUNTO NOMBRE IGUAL NOMBRE . PUNTO NOMBRE
+
+    PUNTO           shift and go to state 125
+
+
+state 124
+
+    (13) condition_count -> COUNT PARENIZQ TODO PARENDER . comparison value
+    (32) comparison -> . MAYOR_QUE
+    (33) comparison -> . MENOR_QUE
+    (34) comparison -> . IGUAL
+    (35) comparison -> . MAYOR_IGUAL
+    (36) comparison -> . MENOR_IGUAL
+
+    MAYOR_QUE       shift and go to state 55
+    MENOR_QUE       shift and go to state 56
+    IGUAL           shift and go to state 57
+    MAYOR_IGUAL     shift and go to state 58
+    MENOR_IGUAL     shift and go to state 59
+
+    comparison                     shift and go to state 126
+
+state 125
+
+    (16) join_condition -> NOMBRE PUNTO NOMBRE IGUAL NOMBRE PUNTO . NOMBRE
+
+    NOMBRE          shift and go to state 127
+
+
+state 126
+
+    (13) condition_count -> COUNT PARENIZQ TODO PARENDER comparison . value
+    (30) value -> . NUMERO
+    (31) value -> . STRING
+
+    NUMERO          shift and go to state 69
+    STRING          shift and go to state 70
+
+    value                          shift and go to state 128
+
+state 127
+
+    (16) join_condition -> NOMBRE PUNTO NOMBRE IGUAL NOMBRE PUNTO NOMBRE .
+
+    DONDE           reduce using rule 16 (join_condition -> NOMBRE PUNTO NOMBRE IGUAL NOMBRE PUNTO NOMBRE .)
+    PUNTO_COMA      reduce using rule 16 (join_condition -> NOMBRE PUNTO NOMBRE IGUAL NOMBRE PUNTO NOMBRE .)
+    AGRUPANDO_POR   reduce using rule 16 (join_condition -> NOMBRE PUNTO NOMBRE IGUAL NOMBRE PUNTO NOMBRE .)
+
+
+state 128
+
+    (13) condition_count -> COUNT PARENIZQ TODO PARENDER comparison value .
+
+    PUNTO_COMA      reduce using rule 13 (condition_count -> COUNT PARENIZQ TODO PARENDER comparison value .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for PUNTO_COMA in state 62 resolved as shift
